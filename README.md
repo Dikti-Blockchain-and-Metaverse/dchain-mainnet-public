@@ -66,7 +66,7 @@
 
 ## Node DIKTI
 
-- Public key : 
+- Public key :
 - Authority :
 - Running :
 - enode : enode://a5f70d62664be2438dfce7133890086e4caa5f9b78e578f3b38faa8ccd0e93444c2e2e141985c048a18aaaf3bd52c131ddbb8ee4f633f27943ecfc67e551d59a@139.255.5.197:59347
@@ -76,6 +76,7 @@
 1. Docker v24.0
 2. Docker compose v3.7
 3. Geth v1.13.2
+4. https://github.com/Dikti-Blockchain-and-Metaverse/dchain-clef-public (*program clef ini harus terlebih dahulu dijalankan sebelum menjalankan dchain node)
 
 # Instaling Node
 
@@ -98,13 +99,10 @@
    BOOTNODE_ENODE= <Isi denga daftar bootnode yang ingin dihubungkan>
 
    ```
-
 4. Jalankan file start.sh dengan cara mengetikan command
 
    `bash start.sh`
-
 5. Jika sudah berhasil dijalankan, selanjutnya bisa di cek pada https://monitoring.dchain.id/ . Jika node yang dibuat sudah tampil maka node berhasil dibuat.
-
 6. KHUSUS UNTUK NODE VALIDATOR. Jika node sudah berjalan maka >50% node validator yang sedang berjalan harus melakukan vote terhadap node baru tersebut agar menjadi Validator. Cara melakukan vote adalah dengan cara mengetikan command `clique.propose("<address yang ingin jadi validator>", true)` pada javascript console yang ada pada tiap node.
 
 # Cara menambahkan Validator baru
