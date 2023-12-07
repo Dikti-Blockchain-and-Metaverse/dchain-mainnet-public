@@ -73,9 +73,9 @@
 
 # Required Tools
 
-1. Docker
-2. Docker compose
-3. Geth
+1. Docker v24.0
+2. Docker compose v3.7
+3. Geth v1.13.2
 
 # Instaling Node
 
