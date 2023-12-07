@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  geth-authority:
+    hostname: geth-authority
+    env_file:
+      - .env
+    image: geth-authority:2.0
+    depends_on:
+      - clef
+    build:
+      context: .
+      args:
+        - PATH_BOOT_KEY=${PATH_BOOT_KEY}
+    command:
+      --datadir root/.ethereum/dchain
+      --bootnodes ${BOOTNODE_ENODE}
+      --syncmode "full"
+      --gcmode archive
+      --networkid=${NETWORK_ID}
+      --discovery.port 30305
+      --port 30305
+      --allow-insecure-unlock
+      --http
+      --http.addr="0.0.0.0"
+      --http.api="eth,web3,net,miner,admin,personal"
+      --http.vhosts "0.0.0.0"
+      --http.port 8545
+      --http.corsdomain="*"
+      --signer ${CLEF}
+      --miner.etherbase=${PUBLIC_KEY}
+      --mine
+      --ethstats ${ETH_STATS}
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+      - "30305:30305"
+    volumes:
+      - ${PATH_DCHAIN}:/root/.ethereum/dchain
+    networks:
+      priv-eth-net:
+
+networks:
+  priv-eth-net:
+    driver: bridge
+    name: priv-eth-net
