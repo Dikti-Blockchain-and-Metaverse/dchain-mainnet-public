@@ -71,55 +71,44 @@
 - Running :
 - enode : enode://a5f70d62664be2438dfce7133890086e4caa5f9b78e578f3b38faa8ccd0e93444c2e2e141985c048a18aaaf3bd52c131ddbb8ee4f633f27943ecfc67e551d59a@139.255.5.197:59347
 
+# Required Tools
+
+1. Docker
+2. Docker compose
+3. Geth
+
 # Instaling Node
 
-1. Pastikan server sudah terinstall docker.
+1. Pastikan server sudah terinstall tools yang dibutuhkan.
 2. Clone repository ini pada server.
-3. Buat boot.key dan wallet.
-
-   - Cara membuat boot.key
-
-     `bootnode -genkey boot.key`
-
-   - Cara membuat wallet (pastikan server sudah terinstall geth)
-
-     `geth --datadir node1 account new`
-
-   - Atau bisa menggunakan wallet yang sudah ada dengan cara mengubah private key menjadi file json
-
-4. Masukan boot.key dan wallet yang sudah dibuat ke dalam 1 folder (contoh: Dchain10-Baru)
-
-5. Buat file .env dan sesuaikan variabel yg ada.
+3. Buat file .env dan sesuaikan variabel yg ada.
    Contoh (contoh ini ada juga di file .env.example):
 
    ```
    NETWORK_ID=17845
 
-   ACCOUNT_PASSWORD= <isikan password dari wallet yang sudah dibuat>
-
    PUBLIC_KEY= <isikan dengan public key dari wallet yang dibuat>
 
-   ETH_STATS= <Nama node>:dchainPOA@node-ugm.dchain.id:9000         #NodeName:password@linkToEthStats
+   ETH_STATS= <Nama node>:Dchain-POA@monitoring.dchain.id:443         #NodeName:password@linkToEthStats
 
-   WALLET= <Isi dengan nama file wallet json yang sudah dibuat>
+   CLEF=http://clef:8550
 
-   PATH_ADRESSS_WALLET= <Isi dengan nama folder tempat menyimpan file wallet json>
+   PATH_DCHAIN=<path bind folder pada vm>
 
-   PATH_BOOT_KEY= <Isi dengan nama folder tempat menyimpan file boot.key>
+   BOOTNODE_ENODE= <Isi denga daftar bootnode yang ingin dihubungkan>
 
-   BOOTNODE_ENODE= <Isi denga daftar node yang ingin dihubungkan>
    ```
 
-6. Jalankan file docker-compose.yml dengan cara
+4. Jalankan file start.sh dengan cara mengetikan command
 
-   `docker compose up -d` atau `docker-compose up -d`
+   `bash start.sh`
 
-7. Jika sudah berhasil dijalankan bisa di cek pada http://202.43.94.135:9000/ . Jika node yang dibuat sudah tampil maka node berhasil dibuat.
+5. Jika sudah berhasil dijalankan, selanjutnya bisa di cek pada https://monitoring.dchain.id/ . Jika node yang dibuat sudah tampil maka node berhasil dibuat.
 
-8. KHUSUS UNTUK NODE VALIDATOR. Jika node sudah berjalan maka >50% node yang sedang berjalan harus melakukan vote terhadap node baru tersebut agar menjadi Validator. Cara melakukan vote adalah dengan cara mengetikan command `clique.propose("<address yang ingin jadi validator>", true)` pada javascript console yang ada pada tiap node.
+6. KHUSUS UNTUK NODE VALIDATOR. Jika node sudah berjalan maka >50% node validator yang sedang berjalan harus melakukan vote terhadap node baru tersebut agar menjadi Validator. Cara melakukan vote adalah dengan cara mengetikan command `clique.propose("<address yang ingin jadi validator>", true)` pada javascript console yang ada pada tiap node.
 
 # Cara menambahkan Validator baru
 
 1. Buat terlebih dahulu node yang ingin dijadikan node validator.
-2. Jika node sudah berjalan, tiap node / >50% node yang sedang berjalan dalam jaringan harus melakukan vote terhadap node baru tersebut agar menjadi Validator. Cara melakukan vote adalah dengan cara mengetikan command `clique.propose("<address yang ingin jadi validator>", true)` pada javascript console yang ada pada tiap node.
+2. Jika node sudah berjalan, tiap node / >50% node validator yang sedang berjalan dalam jaringan harus melakukan vote terhadap node baru tersebut agar menjadi Validator. Cara melakukan vote adalah dengan cara mengetikan command `clique.propose("<address yang ingin jadi validator>", true)` pada javascript console yang ada pada tiap node.
 3. Node akan menjadi validator setelah ada block baru setelah diadakan voting.
