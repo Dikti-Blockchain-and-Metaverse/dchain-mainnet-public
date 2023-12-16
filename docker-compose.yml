@@ -8,7 +8,10 @@ services:
     image: geth-authority:2.0
     build:
       context: .
+      args:
+        - PATH_BOOT_KEY=${PATH_BOOT_KEY}
     command:
+      --nodekey /root/.ethereum/dchain/${PATH_BOOT_KEY}
       --datadir root/.ethereum/dchain
       --bootnodes ${BOOTNODE_ENODE}
       --syncmode "full"
@@ -16,7 +19,6 @@ services:
       --networkid=${NETWORK_ID}
       --discovery.port 30305
       --port 30305
-      --allow-insecure-unlock
       --http
       --http.addr="0.0.0.0"
       --http.api="eth,web3,net,miner,admin,personal"
@@ -27,6 +29,8 @@ services:
       --miner.etherbase=${PUBLIC_KEY}
       --mine
       --ethstats ${ETH_STATS}
+      --maxpeers 100
+      --cache 1024
     ports:
       - "8545:8545"
       - "30303:30303"
@@ -40,3 +44,4 @@ networks:
   priv-eth-net:
     driver: bridge
     name: priv-eth-net
+    external: true
