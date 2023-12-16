@@ -6,12 +6,8 @@ services:
     env_file:
       - .env
     image: geth-authority:2.0
-    depends_on:
-      - clef
     build:
       context: .
-      args:
-        - PATH_BOOT_KEY=${PATH_BOOT_KEY}
     command:
       --datadir root/.ethereum/dchain
       --bootnodes ${BOOTNODE_ENODE}
