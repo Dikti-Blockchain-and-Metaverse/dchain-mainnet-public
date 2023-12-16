@@ -4,4 +4,6 @@ mkdir dchain
 
 geth init --datadir dchain genesis.json
 
-docker compose up -d
+cd dchain
+
+bootnode -genkey boot.key
