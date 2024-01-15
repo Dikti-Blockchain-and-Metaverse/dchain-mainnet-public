@@ -1,11 +1,11 @@
 version: "3.7"
 
 services:
-  geth-authority:
-    hostname: geth-authority
+  geth-authority-testnet:
+    hostname: geth-authority-testnet
     env_file:
       - .env
-    image: geth-authority:2.0
+    image: geth-authority-testnet:2.0
     build:
       context: .
       args:
@@ -38,10 +38,10 @@ services:
     volumes:
       - ${PATH_DCHAIN}:/root/.ethereum/dchain
     networks:
-      priv-eth-net:
+      priv-eth-net-testnet:
 
 networks:
-  priv-eth-net:
+  priv-eth-net-testnet:
     driver: bridge
-    name: priv-eth-net
+    name: priv-eth-net-testnet
     external: true
