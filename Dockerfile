@@ -1,3 +1,3 @@
-FROM ethereum/client-go:alltools-v1.13.2
+FROM ethereum/client-go:alltools-v1.13.10
 
 ENTRYPOINT ["geth"]
