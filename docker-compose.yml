@@ -17,13 +17,13 @@ services:
       --syncmode "full"
       --gcmode archive
       --networkid=${NETWORK_ID}
-      --discovery.port 30305
-      --port 30305
+      --discovery.port 30301
+      --port 30301
       --http
       --http.addr="0.0.0.0"
       --http.api="eth,web3,net,miner,admin,personal"
       --http.vhosts "0.0.0.0"
-      --http.port 8545
+      --http.port 8541
       --http.corsdomain="*"
       --signer ${CLEF}
       --miner.etherbase=${PUBLIC_KEY}
@@ -32,9 +32,9 @@ services:
       --maxpeers 100
       --cache 1024
     ports:
-      - "8545:8545"
-      - "30303:30303"
-      - "30305:30305"
+      - "8541:8541"
+      - "30304:30304"
+      - "30301:30301"
     volumes:
       - ${PATH_DCHAIN}:/root/.ethereum/dchain
     networks:
