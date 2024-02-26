@@ -21,10 +21,10 @@ services:
       --port 30305
       --http
       --http.addr="0.0.0.0"
-      --http.api="eth,web3,net,miner,admin,personal"
+      --http.api="eth,web3,net,admin"
       --http.vhosts "0.0.0.0"
       --http.port 8545
-      --http.corsdomain="*"
+      --http.corsdomain="http://localhost"
       --signer ${CLEF}
       --miner.etherbase=${PUBLIC_KEY}
       --mine
@@ -32,7 +32,6 @@ services:
       --maxpeers 100
       --cache 1024
     ports:
-      - "8545:8545"
       - "30303:30303"
       - "30305:30305"
     volumes:
